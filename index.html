@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inkblot Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Word to Inkblot</h1>
+    <input type="text" id="wordInput" placeholder="Enter a word">
+    <button onclick="generateInkblot()">Generate</button>
+    <img id="inkblot" src="" alt="Generated Inkblot">
+    <script>
+        async function generateInkblot() {
+            const word = document.getElementById('wordInput').value;
+            const response = await fetch('YOUR_BACKEND_API', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ word })
+            });
+            const data = await response.json();
+            document.getElementById('inkblot').src = data.image;
+        }
+    </script>
+</body>
+</html>
